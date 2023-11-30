@@ -5,18 +5,16 @@ export function Ratings({rate}: {rate: number}) {
     const [rates, setRates] = useState<number[]>([0, 0, 0, 0, 0]);
 
     useEffect(() => {
-        if(rate !== 0){
-            var v = rates;
-            var i = 0;
-            while(i <= 5){
-                if(i > rate){
-                    break;
-                }
-                v[i] = 1;
-                i++;
+        var v = rates;
+        var i = 0;
+        while(i <= 5){
+            if(i > rate){
+                break;
             }
-            setRates(v);
+            v[i] = 1;
+            i++;
         }
+        setRates(v);
     }, []);
     
     return <ul className="my-1 flex list-none gap-1 p-0 justify-center">
