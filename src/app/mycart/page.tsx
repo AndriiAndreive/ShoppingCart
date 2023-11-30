@@ -20,9 +20,9 @@ export default function Index() {
             {carts.length === 0 ? <Loading full /> : carts.map((cart:IProduct, index:number) => {
                 return <div key={index} className={`flex flex-row justify-stretch gap-4 border p-2 m-1`}>
                     <div className="h-[60px]">
-                        <img src={cart.image} className="h-full w-[60px]" />
+                        <img src={cart.image} className="h-full w-[60px] cursor-pointer" title={cart.title} />
                     </div>
-                    <div className="h-[60px] min-w-[50%]">
+                    <div className="h-[60px] min-w-[50%] max-w-[50%] truncate">
                         <label className="leading-[36px]">{cart.title}</label>
                         <p>Price : $ {cart.price}</p>
                     </div>
