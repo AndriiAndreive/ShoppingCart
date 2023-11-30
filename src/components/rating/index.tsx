@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 
 export function Ratings({rate}: {rate: number}) {
     const [rates, setRates] = useState<number[]>([0, 0, 0, 0, 0]);
-
     useEffect(() => {
         var v = rates;
         var i = 0;
@@ -15,7 +14,7 @@ export function Ratings({rate}: {rate: number}) {
             i++;
         }
         setRates(v);
-    }, []);
+    }, [rate]);
     
     return <ul className="my-1 flex list-none gap-1 p-0 justify-center">
         {rates.map((val:number, index:number) => {
