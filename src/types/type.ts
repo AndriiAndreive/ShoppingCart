@@ -12,3 +12,9 @@ export interface IRate {
     count: number;
     rate: number;
 }
+
+export interface ICart {
+    productId: number;
+    price: number;
+    quantity: number;
+}

@@ -1,5 +1,4 @@
 "use client"
-import Image from 'next/image'
 import { IProduct } from "@/types/type"
 import { useEffect, useState } from "react"
 import { useCartItems } from "../../context/CartContext"
@@ -26,7 +25,11 @@ export default function Index() {
 
   const addToCart = (e: any, product: IProduct) => {
     e.preventDefault();
-    setMyCartItems([...cartItems, product])
+    setMyCartItems([...cartItems, {
+      productId : product.id,
+      price: parseFloat(product.price),
+      quantity : 1
+    }])
   }
   
   return (
@@ -34,7 +37,7 @@ export default function Index() {
       {products.length == 0 ? <Loading full />
        : <div className="mb-32 grid text-center lg:max-w-5xl lg:w-full lg:mb-0 lg:grid-cols-4 lg:text-left md:grid-cols-3 sm:grid-cols-2">
         {products && products.map((product: any, key: number) => {
-          const isAdded = cartItems.filter(cartitem => cartitem.id == product.id).length > 0;
+          const isAdded = cartItems.filter(cartitem => cartitem.productId == product.id).length > 0;
           return (
             <div 
               key={key}

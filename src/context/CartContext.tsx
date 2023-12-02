@@ -1,10 +1,10 @@
 "use client"
 import { createContext, useContext, ReactNode, useState } from "react";
-import { IProduct } from "@/types/type";
+import { ICart } from "@/types/type";
 
 type cartContextType = {
-    cartItems: IProduct[];
-    setMyCartItems: (cartitems: IProduct[]) => void;
+    cartItems: ICart[];
+    setMyCartItems: (cartitems: ICart[]) => void;
 };
 
 const cartContextDefaultValues: cartContextType = {
@@ -33,9 +33,9 @@ const getMyCartItems = () => {
 
 export function CartProvider({ children }: Props) {
 
-    const [cartItems, setCartItems] = useState<IProduct[]>(getMyCartItems());
+    const [cartItems, setCartItems] = useState<ICart[]>(getMyCartItems());
 
-    const setMyCartItems = (cartitems: IProduct[]) => {
+    const setMyCartItems = (cartitems: ICart[]) => {
         setCartItems(cartitems);
         sessionStorage.setItem('cartitems', JSON.stringify(cartitems));
     };

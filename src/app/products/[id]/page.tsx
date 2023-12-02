@@ -1,8 +1,6 @@
 "use client"
-import Image from 'next/image'
 import { IProduct } from "@/types/type"
 import { useEffect, useState } from "react"
-import Loading from '@/components/loading'
 import { Ratings } from '@/components/rating'
 import { useCartItems } from '@/context/CartContext'
 
@@ -21,7 +19,11 @@ export default function Index({ params }: { params: { id: number } }) {
 
   const addToCart = (e: any, product: IProduct) => {
     e.preventDefault();
-    setMyCartItems([...cartItems, product])
+    setMyCartItems([...cartItems, {
+      productId : product.id,
+      price: parseFloat(product.price),
+      quantity : 1
+    }])
   }
   
   return (
@@ -54,7 +56,7 @@ export default function Index({ params }: { params: { id: number } }) {
                 </div>
                 <div>
                     <Ratings rate={product.rating.rate} /> 
-                    <button onClick={(e) => addToCart(e, product)} disabled={cartItems.filter(cartitem => cartitem.id == product.id).length > 0} className='disabled:opacity-25 disabled:cursor-not-allowed w-full rounded bg-green-600 p-3 text-white hover:bg-green-700 mt-5'>Add to Cart</button>
+                    <button onClick={(e) => addToCart(e, product)} disabled={cartItems.filter(cartitem => cartitem.productId == product.id).length > 0} className='disabled:opacity-25 disabled:cursor-not-allowed w-full rounded bg-green-600 p-3 text-white hover:bg-green-700 mt-5'>Add to Cart</button>
                 </div>
             </div>
         </div>}
