@@ -1,5 +1,6 @@
 'use client' 
 import { useCartItems } from '@/context/CartContext';
+import { ICart } from '@/types/type';
 import { usePathname } from 'next/navigation' 
 import { useEffect, useState } from 'react';
 export function Navbar() {
@@ -8,7 +9,7 @@ export function Navbar() {
   const [count, setCount] = useState<number>(0);
   useEffect(() => {
     if(cartItems){
-      setCount(cartItems.length);
+      setCount(cartItems.reduce((sum: number, cart: ICart) => sum + cart.quantity, 0));
     }
   }, [cartItems]);
   return (
